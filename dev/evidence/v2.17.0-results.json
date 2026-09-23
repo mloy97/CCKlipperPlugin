@@ -1,0 +1,102 @@
+[
+ {
+  "check": "G selectors present",
+  "pass": true,
+  "detail": "{\"nav.v-navigation-drawer .v-list\": true, \"nav .v-list\": true, \"nav a.v-list-item[href]\": 6, \".v-list-item__title\": true, \"main#content\": true, \"main .v-main__wrap\": true, \"#page-container\": true, \"#app\": true, \"vue2\": true, \"vue3\": false}"
+ },
+ {
+  "check": "A1 first visit: script loads + nav item",
+  "pass": true,
+  "detail": "{\"loaded\": true, \"navItem\": true, \"navItemIndex\": 6, \"navCount\": 7, \"panelVisible\": false, \"pageContainerVisible\": true, \"fallback\": false, \"swControlled\": false, \"path\": \"/\", \"version\": \"ok\"}"
+ },
+ {
+  "check": "A2 hard reload (ignoreCache)",
+  "pass": true,
+  "detail": "loaded=True"
+ },
+ {
+  "check": "A3 reload served by service worker still injected",
+  "pass": true,
+  "detail": "from_service_worker=True swControlled=True"
+ },
+ {
+  "check": "A3b deep link /console via SW still injected",
+  "pass": true,
+  "detail": "from_service_worker=True"
+ },
+ {
+  "check": "C1 open our view: panel shown, Mainsail page hidden, URL unchanged",
+  "pass": true,
+  "detail": "{\"loaded\": true, \"navItem\": true, \"navItemIndex\": 6, \"navCount\": 7, \"panelVisible\": true, \"pageContainerVisible\": false, \"fallback\": false, \"swControlled\": true, \"path\": \"/\", \"version\": \"ok\"}"
+ },
+ {
+  "check": "C2 leave to Console: Mainsail routes + renders, panel hidden",
+  "pass": true,
+  "detail": "{\"loaded\": true, \"navItem\": true, \"navItemIndex\": 6, \"navCount\": 7, \"panelVisible\": false, \"pageContainerVisible\": true, \"fallback\": false, \"swControlled\": true, \"path\": \"/console\", \"version\": \"ok\"}"
+ },
+ {
+  "check": "C3 come back to our view, then browser Back leaves it",
+  "pass": true,
+  "detail": "back->path=/"
+ },
+ {
+  "check": "C4 clicking Mainsail item for the current route leaves our view",
+  "pass": true,
+  "detail": "{\"loaded\": true, \"navItem\": true, \"navItemIndex\": 6, \"navCount\": 7, \"panelVisible\": false, \"pageContainerVisible\": true, \"fallback\": false, \"swControlled\": true, \"path\": \"/\", \"version\": \"ok\"}"
+ },
+ {
+  "check": "C5 many round trips: exactly one nav item and one panel",
+  "pass": true,
+  "detail": "navItemIndex=6/7"
+ },
+ {
+  "check": "C6 Shadow DOM isolation (page CSS doesn't reach panel; panel CSS doesn't reach page)",
+  "pass": true,
+  "detail": "{\"panelInset\": 24, \"ourFontSize\": \"14px\", \"ourDisplay\": \"block\", \"ourPanelDisplay\": \"block\", \"mainsailPOpacities\": [\"1\"]}"
+ },
+ {
+  "check": "C7 no new console errors vs stock Mainsail (same load sequence)",
+  "pass": true,
+  "detail": "errors stock=0 injected=0; warnings stock=0 injected=0 (see console.json); new=[] ours=[]"
+ },
+ {
+  "check": "C8 phone viewport: item visible in drawer, opens panel, closes drawer, leaving works",
+  "pass": true,
+  "detail": "itemVisible=True drawerClosed=True errors=[]"
+ },
+ {
+  "check": "A4 control: WITHOUT sw.js rule, SW keeps serving stale stock index.html (expected to reproduce the bug)",
+  "pass": true,
+  "detail": "still stock after 5 reloads (bug reproduced)"
+ },
+ {
+  "check": "A5 WITH sw.js rule: pre-existing PWA picks up injection",
+  "pass": true,
+  "detail": "injected after 1 reload(s), served_from_sw=True"
+ },
+ {
+  "check": "A6 after uninstall, pre-existing PWA returns to stock",
+  "pass": true,
+  "detail": "stock after 1 reload(s), served_from_sw=True"
+ },
+ {
+  "check": "F-mode inject.js syntax error: Mainsail still navigates",
+  "pass": true,
+  "detail": " errors=[\"pageerror: Unexpected identifier 'is'\"]"
+ },
+ {
+  "check": "F-mode inject.js throws at top level: Mainsail still navigates",
+  "pass": true,
+  "detail": " errors=['pageerror: boom from communitycad test']"
+ },
+ {
+  "check": "F-mode inject.js 404: Mainsail still navigates",
+  "pass": true,
+  "detail": " errors=['console.error: Failed to load resource: the server responded with a status of 40']"
+ },
+ {
+  "check": "F-mode inject.js selectors broken (sidebar gone): Mainsail still navigates",
+  "pass": true,
+  "detail": "fallback_button=True errors=[]"
+ }
+]

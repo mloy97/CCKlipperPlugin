@@ -1,0 +1,15 @@
+### F: ngx_http_sub_module
+--- this Pi: Debian GNU/Linux 13 (trixie), MainsailOS release 3.0.0 (trixie), nginx version: nginx/1.26.3
+--with-http_gzip_static_module
+--with-http_sub_module
+--- simulated nginx without the module (wrapper hides it from nginx -V):
+[communitycad] ERROR: this nginx was built without ngx_http_sub_module (sub_filter), so the injection cannot work. Nothing was changed. On Debian 11 this means nginx-light; install nginx-core or nginx-full.
+install.sh exit=1; site file unchanged: yes; conf.d=[common_vars.conf upstreams.conf ]
+--- simulated 'nginx -t' failure after config is written (module missing but not detected):
+[communitycad] Mainsail site: dev/.run/etc/sites-available/mainsail (root dev/.run/mainsail, version v2.19.0)
+[communitycad] backed up -> dev/.run/communitycad/backups/20260922-224226dev/.run/etc/sites-available/mainsail
+nginx: [emerg] unknown directive "sub_filter" (simulated)
+[communitycad] nginx -t failed, rolling back
+[communitycad] ERROR: install aborted; nginx config restored
+install.sh exit=1; site file restored: byte-identical; conf.d=[common_vars.conf upstreams.conf ]; state file: absent
+running nginx untouched, served page: 0 script tags

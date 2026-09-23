@@ -1,0 +1,12 @@
+[
+ {
+  "check": "D1 after file swap (nginx untouched): served index.html + sw.js still rewritten",
+  "pass": true,
+  "detail": ""
+ },
+ {
+  "check": "D2 existing PWA profile moves to new Mainsail version, injection + round trip work",
+  "pass": true,
+  "detail": "v2.17.0 -> v2.19.0"
+ }
+]

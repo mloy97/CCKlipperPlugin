@@ -1,0 +1,14 @@
+### B: gzip_static (harness, Mainsail v2.19.0)
+--- stock KIAUH/MainsailOS config, plugin installed:
+gzip-negotiating client: 1 script tag(s); identity client: 1
+precompressed files in Mainsail dir: 0
+--- add 'gzip_static on;' at http level + index.html.gz/sw.js.gz (a web UI that ships precompressed files):
+gzip-negotiating client: 0 script tag(s)   <-- silently skipped
+identity client (curl default): 1 script tag(s)   <-- why it's easy to miss
+sw.js rewritten for gzip client: 0
+Content-Encoding: gzip
+--- installer on this setup:
+[communitycad] ERROR: gzip_static is enabled and dev/.run/mainsail contains index.html.gz/sw.js.gz; sub_filter would be bypassed. Set 'gzip_static off;' for Mainsail's server (see REPORT.md, criterion B). Nothing was changed.
+install.sh exit=1; include present: 0
+--- fix: 'gzip_static off;' in Mainsail's server scope (demonstrated by adding it to our include):
+gzip-negotiating client: 1 script tag(s); sw.js rewritten: 1

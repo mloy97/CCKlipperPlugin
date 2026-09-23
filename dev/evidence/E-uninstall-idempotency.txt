@@ -1,0 +1,33 @@
+### E + idempotency (harness, Mainsail v2.19.0)
+stock served: /=67901d36d7cd98b2 sw.js=26d62fd40bb2ee5d   on disk: index.html=67901d36d7cd98b2 sw.js=26d62fd40bb2ee5d
+--- install #1
+[communitycad] Mainsail site: dev/.run/etc/sites-available/mainsail (root dev/.run/mainsail, version v2.19.0)
+[communitycad] backed up -> dev/.run/communitycad/backups/20260922-224224dev/.run/etc/sites-available/mainsail
+[communitycad] nginx reloaded
+[communitycad] verified: http://127.0.0.1:8088/ contains the script tag
+[communitycad] verified: http://127.0.0.1:8088/sw.js is rewritten
+[communitycad] verified: http://127.0.0.1:8088/communitycad/inject.js is served
+--- install #2 (idempotency)
+[communitycad] Mainsail site: dev/.run/etc/sites-available/mainsail (root dev/.run/mainsail, version v2.19.0)
+[communitycad] include already present in dev/.run/etc/sites-available/mainsail
+[communitycad] nginx config already up to date
+[communitycad] verified: http://127.0.0.1:8088/ contains the script tag
+[communitycad] verified: http://127.0.0.1:8088/sw.js is rewritten
+[communitycad] verified: http://127.0.0.1:8088/communitycad/inject.js is served
+include blocks in site file: 1
+served while installed: /=d3197d4c0f488ae7 (injected)
+--- uninstall #1
+[communitycad] dev/.run/etc/sites-available/mainsail is byte-identical to its pre-install backup
+[communitycad] backed up -> dev/.run/communitycad/backups/20260922-224225dev/.run/etc/sites-available/mainsail
+[communitycad] backed up -> dev/.run/communitycad/backups/20260922-224225dev/.run/etc/conf.d/communitycad.conf
+[communitycad] backed up -> dev/.run/communitycad/backups/20260922-224225dev/.run/etc/communitycad/mainsail-server.conf
+[communitycad] nginx reloaded
+[communitycad] removed dev/.run/communitycad/web (backups kept in dev/.run/communitycad/backups)
+[communitycad] verified: served /index.html is byte-identical to dev/.run/mainsail/index.html
+[communitycad] verified: served /sw.js is byte-identical to dev/.run/mainsail/sw.js
+--- uninstall #2 (idempotency)
+[communitycad] no include found in nginx site config
+[communitycad] removed dev/.run/communitycad/web (backups kept in dev/.run/communitycad/backups)
+site file vs pre-install copy: IDENTICAL
+served after uninstall: /=67901d36d7cd98b2 /(gzip)=67901d36d7cd98b2 /console=67901d36d7cd98b2 sw.js=26d62fd40bb2ee5d
+leftover files: conf.d=[common_vars.conf upstreams.conf ] communitycad-dir=absent web-dir=absent
