@@ -4,6 +4,10 @@ Throwaway prototype for a feasibility question: can we add our own UI to Mainsai
 without forking it, by having nginx inject one `<script>` tag? The verdict and
 evidence are in **[REPORT.md](REPORT.md)**.
 
+**Planning docs** (execution plan, phase status, API audit, reports) are kept in the
+CommunityCADPlatform repo under `docs/planning/`; see [docs/planning/README.md](docs/planning/README.md).
+That copy is the source of truth; this repo holds no duplicate.
+
 ```
 plugin/                       what would ship (prototype quality)
   web/inject.js               sidebar entry + Shadow DOM panel; guards every entry point
